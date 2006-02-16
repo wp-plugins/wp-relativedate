@@ -8,4 +8,4 @@ relativedate.php
 ------------------------------------------------------------------
 
 
-// Activate the relative date plugin
+// Activate WP-RelativeDate plugin
