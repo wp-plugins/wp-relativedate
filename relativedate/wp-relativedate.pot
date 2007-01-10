@@ -1,0 +1,70 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-RelativeDate 1.10\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2007-01-10 22:19+0800\n"
+"Last-Translator: Lester 'GaMerZ' Chan <gamerz84@hotmail.com>\n"
+"Language-Team: Lester Chan <gamerz84@hotmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: SINGAPORE\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: relativedate.php:43
+#: relativedate.php:107
+msgid "Today"
+msgstr ""
+
+#: relativedate.php:45
+#: relativedate.php:109
+msgid "Yesterday"
+msgstr ""
+
+#: relativedate.php:48
+#: relativedate.php:50
+#: relativedate.php:112
+#: relativedate.php:114
+#, php-format
+msgid "%s days ago"
+msgstr ""
+
+#: relativedate.php:54
+#: relativedate.php:56
+#: relativedate.php:118
+#: relativedate.php:120
+#, php-format
+msgid "%s weeks ago"
+msgstr ""
+
+#: relativedate.php:78
+#: relativedate.php:141
+#, php-format
+msgid "%s seconds ago"
+msgstr ""
+
+#: relativedate.php:80
+#: relativedate.php:143
+msgid "1 minute ago"
+msgstr ""
+
+#: relativedate.php:82
+#: relativedate.php:145
+#, php-format
+msgid "%s minutes ago"
+msgstr ""
+
+#: relativedate.php:84
+#: relativedate.php:147
+msgid "1 hour ago"
+msgstr ""
+
+#: relativedate.php:86
+#: relativedate.php:149
+#, php-format
+msgid "%s hours ago"
+msgstr ""
+
