@@ -33,32 +33,37 @@ load_plugin_textdomain('wp-relativedate', 'wp-content/plugins/relativedate');
 
 
 ### Function: Display Post Relative Date (Today/Yesterday/Days Ago/Weeks Ago)
-add_filter('the_date', 'relative_post_date');
-function relative_post_date($current_dateformat, $display_ago_only = 0) {
-	global $previous_day;
-	$day_diff = (date('z', current_time('timestamp', 1)) - get_post_time('z'));
+add_filter('the_date', 'relative_post_date', '', 4);
+function relative_post_date($the_date = '', $d = '', $before = '', $after = '', $display_ago_only = false) {
+	global $id, $post, $previous_day;
+	$day_diff = (gmdate('z', current_time('timestamp')) - get_post_time('z'));
 	if($day_diff < 0) { $day_diff = 32; }
-	if ($current_dateformat != $previous_day) {
+	if ($the_date != $previous_day) {
+		if ($d=='') {
+			$raw_date .= mysql2date(get_option('date_format'), $post->post_date);
+		} else {
+			$raw_date .= mysql2date($d, $post->post_date);
+		}
 		if($day_diff == 0) {
-			return __('Today', 'wp-relativedate');
+			return $before.__('Today', 'wp-relativedate').$after;
 		} elseif($day_diff == 1) {
-			return __('Yesterday', 'wp-relativedate');
+			return$before. __('Yesterday', 'wp-relativedate').$after;
 		} elseif ($day_diff < 7) {
 			if($display_ago_only) {
-				return sprintf(__('%s days ago', 'wp-relativedate'), $day_diff);
+				return $before.sprintf(__('%s days ago', 'wp-relativedate'), $day_diff).$after;
 			} else {
-				return $current_dateformat.' ('.sprintf(__('%s days ago', 'wp-relativedate'), $day_diff).')';
+				return $before.$raw_date.' ('.sprintf(__('%s days ago', 'wp-relativedate'), $day_diff).')'.$after;
 			}
 		} elseif ($day_diff < 31) {
 			if($display_ago_only) {
-				return sprintf(__('%s weeks ago', 'wp-relativedate'), ceil($day_diff/7));
+				return $before.sprintf(__('%s weeks ago', 'wp-relativedate'), ceil($day_diff/7)).$after;
 			} else {
-				return $current_dateformat.' ('.sprintf(__('%s weeks ago', 'wp-relativedate'), ceil($day_diff/7)).')';
+				return $before.$raw_date.' ('.sprintf(__('%s weeks ago', 'wp-relativedate'), ceil($day_diff/7)).')'.$after;
 			}
 		} else {
-			return $current_dateformat;
+			return $before.$raw_date.$after;
 		}
-		$previous_day = $current_dateformat;
+		$previous_day = $the_date;
 	}
 }
 
@@ -101,7 +106,7 @@ add_filter('get_comment_date', 'relative_comment_date');
 function relative_comment_date($current_dateformat, $display_ago_only = 0) {
 	global $comment;
 	$comment_date = $comment->comment_date;
-	$day_diff = (date('z', current_time('timestamp', 1)) - mysql2date('z', $comment_date));
+	$day_diff = (gmdate('z', current_time('timestamp')) - mysql2date('z', $comment_date));
 	if($day_diff < 0) { $day_diff = 32; }
 	if($day_diff == 0) {
 		return __('Today', 'wp-relativedate');
