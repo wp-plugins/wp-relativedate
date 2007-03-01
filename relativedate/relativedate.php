@@ -3,7 +3,7 @@
 Plugin Name: WP-RelativeDate
 Plugin URI: http://www.lesterchan.net/portfolio/programming.php
 Description: Displays relative date alongside with your post/comments actual date. Like 'Today', 'Yesterday', '2 Days Ago', '2 Weeks Ago', '2 'Seconds Ago', '2 Minutes Ago', '2 Hours Ago'.
-Version: 1.10
+Version: 1.11
 Author: GaMerZ
 Author URI: http://www.lesterchan.net
 */
@@ -34,16 +34,14 @@ load_plugin_textdomain('wp-relativedate', 'wp-content/plugins/relativedate');
 
 ### Function: Display Post Relative Date (Today/Yesterday/Days Ago/Weeks Ago)
 add_filter('the_date', 'relative_post_date', '', 4);
-function relative_post_date($the_date = '', $d = '', $before = '', $after = '', $display_ago_only = false) {
+function relative_post_date($the_date, $d, $before, $after, $display_ago_only = false) {
 	global $id, $post, $previous_day;
+	if(gmdate('Y', current_time('timestamp')) != get_post_time('Y')) {
+			return $before.$the_date.$after;
+	}
 	$day_diff = (gmdate('z', current_time('timestamp')) - get_post_time('z'));
 	if($day_diff < 0) { $day_diff = 32; }
 	if ($the_date != $previous_day) {
-		if ($d=='') {
-			$raw_date .= mysql2date(get_option('date_format'), $post->post_date);
-		} else {
-			$raw_date .= mysql2date($d, $post->post_date);
-		}
 		if($day_diff == 0) {
 			return $before.__('Today', 'wp-relativedate').$after;
 		} elseif($day_diff == 1) {
@@ -52,16 +50,16 @@ function relative_post_date($the_date = '', $d = '', $before = '', $after = '', 
 			if($display_ago_only) {
 				return $before.sprintf(__('%s days ago', 'wp-relativedate'), $day_diff).$after;
 			} else {
-				return $before.$raw_date.' ('.sprintf(__('%s days ago', 'wp-relativedate'), $day_diff).')'.$after;
+				return $before.$the_date.' ('.sprintf(__('%s days ago', 'wp-relativedate'), $day_diff).')'.$after;
 			}
 		} elseif ($day_diff < 31) {
 			if($display_ago_only) {
 				return $before.sprintf(__('%s weeks ago', 'wp-relativedate'), ceil($day_diff/7)).$after;
 			} else {
-				return $before.$raw_date.' ('.sprintf(__('%s weeks ago', 'wp-relativedate'), ceil($day_diff/7)).')'.$after;
+				return $before.$the_date.' ('.sprintf(__('%s weeks ago', 'wp-relativedate'), ceil($day_diff/7)).')'.$after;
 			}
 		} else {
-			return $before.$raw_date.$after;
+			return $before.$the_date.$after;
 		}
 		$previous_day = $the_date;
 	}
@@ -106,6 +104,9 @@ add_filter('get_comment_date', 'relative_comment_date');
 function relative_comment_date($current_dateformat, $display_ago_only = 0) {
 	global $comment;
 	$comment_date = $comment->comment_date;
+	if(gmdate('Y', current_time('timestamp')) != mysql2date('Y', $comment_date)) {
+		return $current_dateformat;
+	}
 	$day_diff = (gmdate('z', current_time('timestamp')) - mysql2date('z', $comment_date));
 	if($day_diff < 0) { $day_diff = 32; }
 	if($day_diff == 0) {
