@@ -1,7 +1,7 @@
 === WP-RelativeDate ===
 Contributors: GamerZ
 Donate link: http://www.lesterchan.net/wordpress
-Tags: date, relative, relativedate, days, ago, weeks, since, hours, seconds, minutes
+Tags: date, relative, relativedate, days, ago, weeks, since, hours, seconds, minutes, today, yesterday
 Requires at least: 2.1.0
 Stable tag: 1.11
 
