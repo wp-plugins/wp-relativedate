@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WP-RelativeDate
-Plugin URI: http://www.lesterchan.net/portfolio/programming.php
+Plugin URI: http://lesterchan.net/portfolio/programming.php
 Description: Displays relative date alongside with your post/comments actual date. Like 'Today', 'Yesterday', '2 Days Ago', '2 Weeks Ago', '2 'Seconds Ago', '2 Minutes Ago', '2 Hours Ago'.
 Version: 1.11
 Author: Lester 'GaMerZ' Chan
-Author URI: http://www.lesterchan.net
+Author URI: http://lesterchan.net
 */
 
 
