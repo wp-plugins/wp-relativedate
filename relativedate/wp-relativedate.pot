@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP-RelativeDate 1.20\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-08-29 00:56+0800\n"
+"PO-Revision-Date: 2007-09-19 00:20+0800\n"
 "Last-Translator: Lester 'GaMerZ' Chan <gamerz84@hotmail.com>\n"
 "Language-Team: Lester Chan <gamerz84@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,62 +14,62 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: relativedate.php:47
-#: relativedate.php:85
-#: relativedate.php:156
+#: relativedate.php:50
+#: relativedate.php:88
+#: relativedate.php:159
 msgid "Today"
 msgstr ""
 
-#: relativedate.php:49
-#: relativedate.php:87
-#: relativedate.php:158
+#: relativedate.php:52
+#: relativedate.php:90
+#: relativedate.php:161
 msgid "Yesterday"
 msgstr ""
 
-#: relativedate.php:52
-#: relativedate.php:54
-#: relativedate.php:90
-#: relativedate.php:92
-#: relativedate.php:161
-#: relativedate.php:163
+#: relativedate.php:55
+#: relativedate.php:57
+#: relativedate.php:93
+#: relativedate.php:95
+#: relativedate.php:164
+#: relativedate.php:166
 #, php-format
 msgid "%s days ago"
 msgstr ""
 
-#: relativedate.php:58
-#: relativedate.php:60
-#: relativedate.php:96
-#: relativedate.php:98
-#: relativedate.php:167
-#: relativedate.php:169
+#: relativedate.php:61
+#: relativedate.php:63
+#: relativedate.php:99
+#: relativedate.php:101
+#: relativedate.php:170
+#: relativedate.php:172
 #, php-format
 msgid "%s weeks ago"
 msgstr ""
 
-#: relativedate.php:124
-#: relativedate.php:190
+#: relativedate.php:127
+#: relativedate.php:193
 #, php-format
 msgid "%s seconds ago"
 msgstr ""
 
-#: relativedate.php:126
-#: relativedate.php:192
+#: relativedate.php:129
+#: relativedate.php:195
 msgid "1 minute ago"
 msgstr ""
 
-#: relativedate.php:128
-#: relativedate.php:194
+#: relativedate.php:131
+#: relativedate.php:197
 #, php-format
 msgid "%s minutes ago"
 msgstr ""
 
-#: relativedate.php:130
-#: relativedate.php:196
+#: relativedate.php:133
+#: relativedate.php:199
 msgid "1 hour ago"
 msgstr ""
 
-#: relativedate.php:132
-#: relativedate.php:198
+#: relativedate.php:135
+#: relativedate.php:201
 #, php-format
 msgid "%s hours ago"
 msgstr ""

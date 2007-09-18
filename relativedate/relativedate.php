@@ -28,8 +28,11 @@ Author URI: http://lesterchan.net
 */
 
 
-### Create Text Domain For Translation
-load_plugin_textdomain('wp-relativedate', 'wp-content/plugins/relativedate');
+### Create Text Domain For Translations
+add_action('init', 'relativedate_textdomain');
+function relativedate_textdomain() {
+	load_plugin_textdomain('wp-relativedate', 'wp-content/plugins/relativedate');
+}
 
 
 ### Function: Display Post Relative Date (Today/Yesterday/Days Ago/Weeks Ago)
