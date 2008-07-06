@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP-RelativeDate 1.31\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-03 00:41+0800\n"
-"PO-Revision-Date: 2008-07-03 00:41+0800\n"
+"POT-Creation-Date: 2008-07-07 00:45+0800\n"
+"PO-Revision-Date: 2008-07-07 00:45+0800\n"
 "Last-Translator: Lester Chan <lesterchan@gmail.com>\n"
 "Language-Team: Lester Chan <lesterchan@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,19 +11,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: English\n"
 "X-Poedit-Country: SINGAPORE\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: wp-relativedate.php:54
 #: wp-relativedate.php:92
-#: wp-relativedate.php:163
+#: wp-relativedate.php:159
 msgid "Today"
 msgstr ""
 
 #: wp-relativedate.php:56
 #: wp-relativedate.php:94
-#: wp-relativedate.php:165
+#: wp-relativedate.php:161
 msgid "Yesterday"
 msgstr ""
 
@@ -31,47 +31,47 @@ msgstr ""
 #: wp-relativedate.php:61
 #: wp-relativedate.php:97
 #: wp-relativedate.php:99
-#: wp-relativedate.php:168
-#: wp-relativedate.php:170
+#: wp-relativedate.php:164
+#: wp-relativedate.php:166
 #, php-format
-msgid "%s days ago"
-msgstr ""
+msgid "%s day ago"
+msgid_plural "%s days ago"
+msgstr[0] ""
+msgstr[1] ""
 
 #: wp-relativedate.php:65
 #: wp-relativedate.php:67
 #: wp-relativedate.php:103
 #: wp-relativedate.php:105
-#: wp-relativedate.php:174
-#: wp-relativedate.php:176
+#: wp-relativedate.php:170
+#: wp-relativedate.php:172
 #, php-format
-msgid "%s weeks ago"
-msgstr ""
+msgid "%s week ago"
+msgid_plural "%s weeks ago"
+msgstr[0] ""
+msgstr[1] ""
 
 #: wp-relativedate.php:131
-#: wp-relativedate.php:197
+#: wp-relativedate.php:193
 #, php-format
-msgid "%s seconds ago"
-msgstr ""
+msgid "%s second ago"
+msgid_plural "%s seconds ago"
+msgstr[0] ""
+msgstr[1] ""
 
 #: wp-relativedate.php:133
-#: wp-relativedate.php:199
-msgid "1 minute ago"
-msgstr ""
+#: wp-relativedate.php:195
+#, php-format
+msgid "%s minute ago"
+msgid_plural "%s minutes ago"
+msgstr[0] ""
+msgstr[1] ""
 
 #: wp-relativedate.php:135
-#: wp-relativedate.php:201
+#: wp-relativedate.php:197
 #, php-format
-msgid "%s minutes ago"
-msgstr ""
-
-#: wp-relativedate.php:137
-#: wp-relativedate.php:203
-msgid "1 hour ago"
-msgstr ""
-
-#: wp-relativedate.php:139
-#: wp-relativedate.php:205
-#, php-format
-msgid "%s hours ago"
-msgstr ""
+msgid "%s hour ago"
+msgid_plural "%s hours ago"
+msgstr[0] ""
+msgstr[1] ""
 
