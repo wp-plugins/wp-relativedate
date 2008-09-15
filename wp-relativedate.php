@@ -3,7 +3,7 @@
 Plugin Name: WP-RelativeDate
 Plugin URI: http://lesterchan.net/portfolio/programming/php/
 Description: Displays relative date alongside with your post/comments actual date. Like 'Today', 'Yesterday', '2 Days Ago', '2 Weeks Ago', '2 'Seconds Ago', '2 Minutes Ago', '2 Hours Ago'.
-Version: 1.31
+Version: 1.40
 Author: Lester 'GaMerZ' Chan
 Author URI: http://lesterchan.net
 */
@@ -41,7 +41,7 @@ function relativedate_textdomain() {
 
 ### Function: Display Post Relative Date (Today/Yesterday/Days Ago/Weeks Ago)
 add_filter('the_date', 'relative_post_date', '', 4);
-function relative_post_date($the_date, $d, $before, $after, $display_ago_only = false) {
+function relative_post_date($the_date, $d = '', $before = '', $after = '', $display_ago_only = false) {
 	global $id, $post, $previous_day;
 	$the_date = strip_tags($the_date);
 	if(gmdate('Y', current_time('timestamp')) != get_post_time('Y')) {
