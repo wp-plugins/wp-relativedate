@@ -3,7 +3,7 @@
 Plugin Name: WP-RelativeDate
 Plugin URI: http://lesterchan.net/portfolio/programming/php/
 Description: Displays relative date alongside with your post/comments actual date. Like 'Today', 'Yesterday', '2 Days Ago', '2 Weeks Ago', '2 'Seconds Ago', '2 Minutes Ago', '2 Hours Ago'.
-Version: 1.40
+Version: 1.31
 Author: Lester 'GaMerZ' Chan
 Author URI: http://lesterchan.net
 */
@@ -27,7 +27,6 @@ Author URI: http://lesterchan.net
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-
 ### Create Text Domain For Translations
 add_action('init', 'relativedate_textdomain');
 function relativedate_textdomain() {
@@ -40,14 +39,14 @@ function relativedate_textdomain() {
 
 
 ### Function: Display Post Relative Date (Today/Yesterday/Days Ago/Weeks Ago)
-add_filter('the_date', 'relative_post_date', '', 4);
+add_filter('the_date', 'relative_post_date', 999);
 function relative_post_date($the_date, $d = '', $before = '', $after = '', $display_ago_only = false) {
-	global $id, $post, $previous_day;
+	global $post, $previous_day;
 	$the_date = strip_tags($the_date);
-	if(gmdate('Y', current_time('timestamp')) != get_post_time('Y')) {
+	if(gmdate('Y', current_time('timestamp')) != mysql2date('Y', $post->post_date, false)) {
 		return $before.$the_date.$after;
 	}
-	$day_diff = (gmdate('z', current_time('timestamp')) - get_post_time('z'));
+	$day_diff = (gmdate('z', current_time('timestamp')) - mysql2date('z', $post->post_date, false));
 	if($day_diff < 0) { $day_diff = 32; }
 	if ($the_date != $previous_day) {
 		if($day_diff == 0) {
@@ -76,17 +75,17 @@ function relative_post_date($the_date, $d = '', $before = '', $after = '', $disp
 
 ### Alternative To WordPress the_date().
 function relative_post_the_date($d = '', $before = '', $after = '', $display_ago_only = false, $display = true) {
-	global $id, $post;
+	global $post;
 	if (empty($d)) {
-		$the_date .= mysql2date(get_option('date_format'), $post->post_date);
+		$the_date = mysql2date(get_option('date_format'), $post->post_date);
 	} else {
-		$the_date .= mysql2date($d, $post->post_date);
+		$the_date = mysql2date($d, $post->post_date);
 	}
 	$output = '';
-	if(gmdate('Y', current_time('timestamp')) != get_post_time('Y')) {
+	if(gmdate('Y', current_time('timestamp')) != mysql2date('Y', $post->post_date, false)) {
 		$output = $before.$the_date.$after;
 	} else {
-		$day_diff = (gmdate('z', current_time('timestamp')) - get_post_time('z'));
+		$day_diff = (gmdate('z', current_time('timestamp')) - mysql2date('z', $post->post_date, false));
 		if($day_diff < 0) { $day_diff = 32; }
 		if($day_diff == 0) {
 			$output = $before.__('Today', 'wp-relativedate').$after;
@@ -117,13 +116,14 @@ function relative_post_the_date($d = '', $before = '', $after = '', $display_ago
 
 
 ### Function: Display Post Relative Time (Seconds Ago/Minutes Ago/Hours Ago)
-add_filter('the_time', 'relative_post_time');
+add_filter('the_time', 'relative_post_time', 999);
 function relative_post_time($current_timeformat, $display_ago_only = 0) {
+  global $post;
 	$current_time = current_time('timestamp');
 	$date_today_time = gmdate('j-n-Y H:i:s', $current_time);
-	$post_date_time = get_post_time('j-n-Y H:i:s');
+	$post_date_time = mysql2date('j-n-Y H:i:s', $post->post_date, false);
 	$date_today = gmdate('j-n-Y', $current_time);
-	$post_date = get_post_time('j-n-Y');
+	$post_date = mysql2date('j-n-Y', $post->post_date, false);
 	$time_diff = (strtotime($date_today_time) - strtotime($post_date_time));
 	$format_ago = '';
 	if($post_date == $date_today) {
@@ -146,14 +146,14 @@ function relative_post_time($current_timeformat, $display_ago_only = 0) {
 
 
 ### Function: Display Comment Relative Date (Today/Yesterday/Days Ago/Weeks Ago)
-add_filter('get_comment_date', 'relative_comment_date');
+add_filter('get_comment_date', 'relative_comment_date', 999);
 function relative_comment_date($current_dateformat, $display_ago_only = 0) {
 	global $comment;
 	$comment_date = $comment->comment_date;
-	if(gmdate('Y', current_time('timestamp')) != mysql2date('Y', $comment_date)) {
+	if(gmdate('Y', current_time('timestamp')) != mysql2date('Y', $comment_date, false)) {
 		return $current_dateformat;
 	}
-	$day_diff = (gmdate('z', current_time('timestamp')) - mysql2date('z', $comment_date));
+	$day_diff = (gmdate('z', current_time('timestamp')) - mysql2date('z', $comment_date, false));
 	if($day_diff < 0) { $day_diff = 32; }
 	if($day_diff == 0) {
 		return __('Today', 'wp-relativedate');
@@ -178,14 +178,14 @@ function relative_comment_date($current_dateformat, $display_ago_only = 0) {
 
 
 ### Function: Display Comment  Relative Time (Seconds Ago/Minutes Ago/Hours Ago)
-add_filter('get_comment_time', 'relative_comment_time');
+add_filter('get_comment_time', 'relative_comment_time', 999);
 function relative_comment_time($current_timeformat, $display_ago_only = 0) {
 	global $comment;	
 	$current_time = current_time('timestamp');
 	$date_today_time = gmdate('j-n-Y H:i:s', $current_time);
-	$comment_date_time = mysql2date('j-n-Y H:i:s', $comment->comment_date);
+	$comment_date_time = mysql2date('j-n-Y H:i:s', $comment->comment_date, false);
 	$date_today = gmdate('j-n-Y', $current_time);
-	$comment_date = mysql2date('j-n-Y', $comment->comment_date);
+	$comment_date = mysql2date('j-n-Y', $comment->comment_date, false);
 	$time_diff = (strtotime($date_today_time) - strtotime($comment_date_time));
 	$format_ago = '';
 	if($comment_date == $date_today) {
