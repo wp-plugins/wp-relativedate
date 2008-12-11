@@ -39,7 +39,7 @@ function relativedate_textdomain() {
 
 
 ### Function: Display Post Relative Date (Today/Yesterday/Days Ago/Weeks Ago)
-add_filter('the_date', 'relative_post_date', 999);
+add_filter('the_date', 'relative_post_date', 999, 4);
 function relative_post_date($the_date, $d = '', $before = '', $after = '', $display_ago_only = false) {
 	global $post, $previous_day;
 	$the_date = strip_tags($the_date);
