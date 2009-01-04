@@ -43,7 +43,7 @@ add_filter('the_date', 'relative_post_date', 999, 4);
 function relative_post_date($the_date, $d = '', $before = '', $after = '', $display_ago_only = false) {
 	global $post, $previous_day;
 	$the_date = strip_tags($the_date);
-	if(gmdate('Y', current_time('timestamp')) != mysql2date('Y', $post->post_date, false)) {
+	if(gmdate('Y', current_time('timestamp')) != mysql2date('Y', $post->post_date, false) && !empty($the_date)) {
 		return $before.$the_date.$after;
 	}
 	$day_diff = (gmdate('z', current_time('timestamp')) - mysql2date('z', $post->post_date, false));
