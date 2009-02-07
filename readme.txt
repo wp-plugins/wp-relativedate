@@ -2,7 +2,7 @@
 Contributors: GamerZ
 Donate link: http://lesterchan.net/wordpress
 Tags: date, relative, relativedate, days, ago, weeks, since, hours, seconds, minutes, today, yesterday
-Requires at least: 2.1.0
+Requires at least: 2.1
 Stable tag: 1.40
 
 Displays relative date alongside with your post/comments actual date.
