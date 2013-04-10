@@ -9,8 +9,8 @@ Author URI: http://lesterchan.net
 */
 
 
-/*  
-	Copyright 2009  Lester Chan  (email : lesterchan@gmail.com)
+/*
+	Copyright 2013  Lester Chan  (email : lesterchan@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -180,7 +180,7 @@ function relative_comment_date($current_dateformat, $display_ago_only = 0) {
 ### Function: Display Comment  Relative Time (Seconds Ago/Minutes Ago/Hours Ago)
 add_filter('get_comment_time', 'relative_comment_time', 999);
 function relative_comment_time($current_timeformat, $display_ago_only = 0) {
-	global $comment;	
+	global $comment;
 	$current_time = current_time('timestamp');
 	$date_today_time = gmdate('j-n-Y H:i:s', $current_time);
 	$comment_date_time = mysql2date('j-n-Y H:i:s', $comment->comment_date, false);
